@@ -1,70 +1,136 @@
-# Getting Started with Create React App
+# Job Dashboard Frontend
+This project is a Job Dashboard frontend application built with React. It provides a user interface for viewing job listings, job details, and user authentication. The project was bootstrapped with Create React App.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
+Project Structure
+public/: Contains the static files for the application.
+src/: Contains the source code of the application.
+components/: Reusable React components.
+pages/: Page components representing different routes.
+App.js: Main application component.
+index.js: Entry point of the application.
+Available Scripts
 In the project directory, you can run:
 
-### `npm start`
+npm start
+Runs the app in development mode.
+Open http://localhost:3000 to view it in your browser.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm test
+Launches the test runner in the interactive watch mode.
+See the section about running tests for more information.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
+npm run build
+Builds the app for production to the build folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm run eject
+Note: this is a one-way operation. Once you eject, you can't go back!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Docker Instructions
+You can also run this application using Docker. Follow the steps below to build and run the Docker container.
 
-### `npm run eject`
+Dockerfile
+Ensure you have a Dockerfile in the root of your project with the following content:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+dockerfile
+### Dockerfile
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```dockerfile
+# Use an official Node.js runtime as a parent image
+FROM node:14
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-## Learn More
+# Install dependencies
+RUN npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Copy the rest of the application code to the working directory
+COPY . .
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Expose port 3000 to the outside world
+EXPOSE 3000
 
-### Code Splitting
+# Command to run the application
+CMD ["npm", "start"]
+```
+Building the Docker Image
+To build the Docker image, navigate to the project directory in your terminal and run:
+```
+docker build -t frontend-image .
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Running the Docker Container
+After building the image, you can run the Docker container with the following command:
 
-### Analyzing the Bundle Size
+```
+docker run -d -p 3000:3000 --name frontend-container frontend-image
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This will start the container in detached mode and map port 3000 of the container to port 3000 on your local machine.
 
-### Making a Progressive Web App
+Accessing the Application
+Open your browser and navigate to http://localhost:3000 to access the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Troubleshooting
+If you encounter any issues while running the application, ensure that:
 
-### Advanced Configuration
+Docker is installed and running on your machine.
+No other application is using port 3000.
+All dependencies are correctly installed.
+For further assistance, refer to the Docker documentation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Cypress End-to-End Testing
+This project uses Cypress for end-to-end testing. Cypress is a JavaScript testing framework that is fast, reliable, and easy to set up and use.
 
-### Deployment
+Writing Cypress Tests
+Cypress tests are located in the cypress/integration directory. You can create new test files with the .spec.js extension to write your tests.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Here is an example of a basic Cypress test:
 
-### `npm run build` fails to minify
+```
+describe('Job Dashboard', () => {
+  it('should display the login page', () => {
+    cy.visit('http://localhost:3000/login');
+    cy.contains('Login').should('be.visible');
+  });
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  it('should login and redirect to jobs page', () => {
+    cy.visit('http://localhost:3000/login');
+    cy.get('input[name="username"]').type('testuser');
+    cy.get('input[name="password"]').type('password');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/');
+    cy.contains('Jobs').should('be.visible');
+  });
+
+  it('should display job details when a job is clicked', () => {
+    cy.visit('http://localhost:3000/');
+    cy.get('.job-item').first().click();
+    cy.contains('Select a job to see details').should('not.exist');
+    cy.get('.job-details').should('be.visible');
+  });
+});
+```
+# Running Cypress Tests
+To run the Cypress tests, follow these steps:
+
+Install Cypress: Make sure you have Cypress installed as a dev dependency. If not, you can install it by running:
+
+```
+npm install cypress --save-dev
+```
+Open Cypress Test Runner: You can open the Cypress Test Runner using the following command:
+
+```
+npx cypress open
+```
+This will launch the Cypress Test Runner, where you can select and run your tests interactively.
+
+Run Cypress Tests in Headless Mode: If you prefer to run the tests in headless mode (without a GUI), use:
+```
+npx cypress run
+```
