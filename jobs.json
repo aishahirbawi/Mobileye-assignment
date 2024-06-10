@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "cliCommand": "npm install",
+    "status": "Completed",
+    "user": "user1",
+    "group": "developers",
+    "dateSubmitted": "2024-05-01",
+    "dateCompleted": "2024-05-01"
+  },
+  {
+    "id": 2,
+    "cliCommand": "npm run build",
+    "status": "In Progress",
+    "user": "user2",
+    "group": "developers",
+    "dateSubmitted": "2024-06-01",
+    "dateCompleted": null
+  },
+  {
+    "id": 3,
+    "cliCommand": "git pull origin main",
+    "status": "Pending",
+    "user": "user3",
+    "group": "managers",
+    "dateSubmitted": "2024-06-02",
+    "dateCompleted": null
+  },
+  {
+    "id": 4,
+    "cliCommand": "docker-compose up",
+    "status": "Completed",
+    "user": "user4",
+    "group": "developers",
+    "dateSubmitted": "2024-06-01",
+    "dateCompleted": "2024-06-01"
+  },
+  {
+    "id": 5,
+    "cliCommand": "npm test",
+    "status": "Failed",
+    "user": "user5",
+    "group": "developers",
+    "dateSubmitted": "2024-06-03",
+    "dateCompleted": "2024-06-03"
+  }
+]
