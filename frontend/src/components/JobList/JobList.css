@@ -1,0 +1,14 @@
+.job-list {
+    width: 100%;
+    max-width: 360px;
+    background-color: #f9f9f9;
+}
+
+.job-item {
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.job-item:hover {
+    background-color: #eee;
+}

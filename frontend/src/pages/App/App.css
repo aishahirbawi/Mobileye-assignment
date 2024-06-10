@@ -1,0 +1,15 @@
+.app {
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 20px;
+
+}
+
+h1 {
+  margin-bottom: 20px;
+}
