@@ -1,39 +1,42 @@
 # Job Dashboard Frontend
 This project is a Job Dashboard frontend application built with React. It provides a user interface for viewing job listings, job details, and user authentication. The project was bootstrapped with Create React App.
 
-Project Structure
-public/: Contains the static files for the application.
-src/: Contains the source code of the application.
-components/: Reusable React components.
-pages/: Page components representing different routes.
-App.js: Main application component.
-index.js: Entry point of the application.
-Available Scripts
+### Project Structure
+- public: Contains the static files for the application.
+- src: Contains the source code of the application.
+- components: Reusable React components.
+- pages: Page components representing different routes.
+- App.js: Main application component.
+- index.js: Entry point of the application.
+### Available Scripts
 In the project directory, you can run:
 
-npm start
-Runs the app in development mode.
-Open http://localhost:3000 to view it in your browser.
+### `npm start`
 
-npm test
-Launches the test runner in the interactive watch mode.
-See the section about running tests for more information.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-npm run build
-Builds the app for production to the build folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-npm run eject
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+### `npm run eject`
 Note: this is a one-way operation. Once you eject, you can't go back!
 
-Docker Instructions
+# Docker Instructions
 You can also run this application using Docker. Follow the steps below to build and run the Docker container.
 
-Dockerfile
+### Dockerfile
 Ensure you have a Dockerfile in the root of your project with the following content:
 
-dockerfile
-### Dockerfile
+### Dockerfile example
 
 ```dockerfile
 # Use an official Node.js runtime as a parent image
