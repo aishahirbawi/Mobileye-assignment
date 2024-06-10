@@ -1,0 +1,46 @@
+/* Header.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.header .logo {
+    font-size: 1.5rem;
+}
+
+.header .nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.header .nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header .auth-button {
+    display: flex;
+    align-items: center;
+}
+
+.header .auth-button a, .header .auth-button button {
+    color: #fff;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.header .auth-button button {
+    padding: 0;
+}
+
+.header .auth-button button:hover {
+    text-decoration: underline;
+}
